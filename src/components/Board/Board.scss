@@ -1,0 +1,9 @@
+// gpt
+.board {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow-x: auto;
+  height: calc(100vh - 60px); // ниже создадим header
+  box-sizing: border-box;
+}

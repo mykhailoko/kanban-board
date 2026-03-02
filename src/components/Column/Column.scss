@@ -1,0 +1,20 @@
+// gpt
+.column {
+  background: #ebecf0;
+  border-radius: 8px;
+  padding: 15px;
+  width: 280px;
+}
+
+.column-title {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.column-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 300px;
+}

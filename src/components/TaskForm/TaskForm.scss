@@ -1,0 +1,22 @@
+// gpt
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+
+  button {
+    background: #0747a6;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+}
