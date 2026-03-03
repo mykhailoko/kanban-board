@@ -8,20 +8,22 @@ interface TaskFormProps {
     onSuccess: () => void;
 }
 
+interface TaskFormValues {
+    title: string;
+    description?: string;
+    priority: "low" | "medium" | "high";
+}
+
 export default function TaskForm({ columnId, onSuccess }: TaskFormProps) {
     const addTask = useBoardStore((state) => state.addTask);
 
-    const { register, handleSubmit, reset } = useForm<{
-        title: string;
-        description: string;
-        priority: "low" | "medium" | "high";
-    }>({
+    const { register, handleSubmit, reset } = useForm<TaskFormValues>({
         defaultValues: {
             priority: "medium"
         }
     });
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: TaskFormValues) => {
         addTask({
             id: nanoid(), 
             title: data.title, 
