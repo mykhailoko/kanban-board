@@ -1,22 +1,76 @@
-// gpt
+@use '../../styles/variables' as *;
+
 .task-card {
-  background: white;
-  padding: 12px;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  background: $task-color;
+  border-radius: 5px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.task-drag-handle {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: $main-font;
+}
+
+.task-description {
+  font-size: 16px;
+  color: $primary-font;
+  line-height: 1.4;
+}
+
+.task-priority {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  padding: 7px;
+  border-radius: 100px;
+  color: white;
+
+  &.low {
+    background-color: $low-priority-color; 
+  }
+
+  &.medium {
+    background-color: $medium-priority-color;
+  }
+
+  &.high {
+    background-color: $high-priority-color; 
+  }
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
 }
 
 .task-delete-btn {
-  background: #ff4d4f;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;       
+  height: 18px;
   border: none;
-  padding: 5px 10px;
-  margin-top: 10px;
-  border-radius: 4px;
+  background: transparent;
   cursor: pointer;
-  font-size: 12px;
-  
-  &:hover {
-      background: #ff7875;
+
+  img {
+    width: 18px;    
+    height: 18px;
   }
 }

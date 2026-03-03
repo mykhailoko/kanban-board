@@ -1,22 +1,54 @@
-// gpt
+@use '../../styles/variables' as *;
+
 .task-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 5px;
 
   input, textarea, select {
     width: 100%;
-    padding: 8px;
-    border-radius: 6px;
+    padding: 8px 10px;
+    border-radius: 8px;
     border: 1px solid #ddd;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.15);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
   }
 
-  button {
-    background: #0747a6;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  textarea {
+    resize: none;
+    min-height: 80px;
   }
 }
+
+.submit-btn {
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &.todo {
+    background: $todo-color;
+  }
+
+  &.inprogress {
+    background: $inprogress-color;
+  }
+
+  &.review {
+    background: $review-color;
+  }
+
+  &.done {
+    background: $done-color;
+  }
+}
+

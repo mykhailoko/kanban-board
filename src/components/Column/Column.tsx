@@ -23,11 +23,13 @@ export default function Column({ column }: Props) {
 
     return (
         <div className="column" id={column.id}>
-            <h2 className="column-title">{column.title}</h2>
+            <div className="column-header">
+                <h2 className="column-title">{column.title}</h2>
 
-            <button className="add-task-btn" onClick={() => setIsModalOpen(true)}>
-                + Добавить задачу
-            </button>
+                <button className="add-task-btn" onClick={() => setIsModalOpen(true)}>
+                    +
+                </button>
+            </div>
 
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                 <TaskForm 

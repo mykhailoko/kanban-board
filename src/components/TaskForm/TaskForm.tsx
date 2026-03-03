@@ -45,7 +45,7 @@ export default function TaskForm({ columnId, onSuccess }: TaskFormProps) {
                 <option value="high">High</option>
             </select>
 
-            <button type="submit">Создать</button>
+            <button type="submit" className={`submit-btn ${columnId}`}>Создать</button>
         </form>
     )
 }
