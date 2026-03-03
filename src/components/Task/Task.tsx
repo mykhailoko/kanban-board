@@ -22,7 +22,7 @@ export default function Task({ task }: Props) {
     return (
         <div ref={setNodeRef} style={style} className="task-card">
             <div className="task-header">
-                <div className="task-title">{task.title}</div>
+                <div {...listeners} {...attributes} className="task-title">{task.title}</div>
 
                 <button className="task-delete-btn" onClick={() => deleteTask(task.id)}>
                     <img src={Delete} alt="delete" />

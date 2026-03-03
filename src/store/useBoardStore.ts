@@ -10,28 +10,37 @@ interface BoardStore extends Board {
     moveTask: (taskId: string, newColumnId: string) => void;
 }
 
+const savedTasks = localStorage.getItem("tasks");
+const savedColumns = localStorage.getItem("columns");
+
 export const useBoardStore = create<BoardStore>((set) => ({
-    columns: [
+    columns: savedColumns ? JSON.parse(savedColumns) : [
         { id: "todo", title: "Сделать", order: 1 },
         { id: "inprogress", title: "В работе", order: 2 },
         { id: "review", title: "На проверке", order: 3 },
         { id: "done", title: "Сделано", order: 4 }
     ],
-    tasks: [],
+    tasks: savedTasks ? JSON.parse(savedTasks) : [],
     addColumn: (column: Column) => 
         set((state) => ({
             columns: [...state.columns, column]
         })),
     addTask: (task: Task) => 
-        set((state) => ({
-            tasks: [...state.tasks, task]
-        })),
+        set((state) => {
+            const newTasks = [...state.tasks, task];
+            localStorage.setItem("tasks", JSON.stringify(newTasks));
+            return { tasks: newTasks };
+        }),
     deleteTask: (id: string) =>
-        set((state) => ({
-            tasks: state.tasks.filter((t) => t.id !== id)
-        })),
+        set((state) => {
+            const newTasks = state.tasks.filter((t) => t.id !== id);
+            localStorage.setItem("tasks", JSON.stringify(newTasks));
+            return { tasks: newTasks };
+        }),
     moveTask: (taskId: string, newColumnId: string) =>
-        set((state) => ({
-            tasks: state.tasks.map(task => task.id === taskId ? {...task, columnId: newColumnId} : task)
-        }))
+        set((state) => {
+            const newTasks = state.tasks.map(task => task.id === taskId ? {...task, columnId: newColumnId} : task);
+            localStorage.setItem("tasks", JSON.stringify(newTasks));
+            return { tasks: newTasks };
+        })
 }))
