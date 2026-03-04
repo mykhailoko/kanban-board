@@ -2,13 +2,19 @@ import { useBoardStore } from "../../store/useBoardStore";
 import type { Task as TaskType } from "../../types/task";
 import "./Task.scss";
 import { useDraggable } from "@dnd-kit/core";
-import Delete from "../../assets/delete.png"
+import Delete from "../../assets/delete.png";
+import Edit from "../../assets/edit.png";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
+import TaskForm from "../TaskForm/TaskForm";
 
 interface Props {
     task: TaskType;
 }
 
 export default function Task({ task }: Props) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const {attributes, listeners, setNodeRef, transform} = useDraggable({
         id: task.id,
     });
@@ -24,10 +30,24 @@ export default function Task({ task }: Props) {
             <div className="task-header">
                 <div {...listeners} {...attributes} className="task-title">{task.title}</div>
 
-                <button className="task-delete-btn" onClick={() => deleteTask(task.id)}>
-                    <img src={Delete} alt="delete" />
-                </button>
+                <div className="task-buttons">
+                    <button className="task-edit-btn" onClick={() => setIsModalOpen(true)}>
+                        <img src={Edit} alt="edit" />
+                    </button>
+
+                    <button className="task-delete-btn" onClick={() => deleteTask(task.id)}>
+                        <img src={Delete} alt="delete" />
+                    </button>
+                </div>
             </div>
+
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <TaskForm 
+                    columnId={task.columnId}
+                    task={task}
+                    onSuccess={() => setIsModalOpen(false)}
+                />
+            </Modal>
 
             <div {...listeners} {...attributes} className="task-drag-handle">
                 {task.description && (

@@ -7,6 +7,7 @@ interface BoardStore extends Board {
     addColumn: (column: Column) => void;
     addTask: (task: Task) => void;
     deleteTask: (id: string) => void;
+    editTask: (id: string, updateFields: Partial<Task>) => void;
     moveTask: (taskId: string, newColumnId: string) => void;
 }
 
@@ -34,6 +35,12 @@ export const useBoardStore = create<BoardStore>((set) => ({
     deleteTask: (id: string) =>
         set((state) => {
             const newTasks = state.tasks.filter((t) => t.id !== id);
+            localStorage.setItem("tasks", JSON.stringify(newTasks));
+            return { tasks: newTasks };
+        }),
+    editTask: (id: string, updateFields: Partial<Task>) =>
+        set((state) => {
+            const newTasks = state.tasks.map(task => task.id === id ? {...task, ...updateFields} : task);
             localStorage.setItem("tasks", JSON.stringify(newTasks));
             return { tasks: newTasks };
         }),

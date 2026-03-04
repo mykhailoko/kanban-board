@@ -59,18 +59,23 @@
   padding-bottom: 15px;
 }
 
-.task-delete-btn {
+.task-buttons {
   display: flex;
+  gap: 10px;
   justify-content: center;
   align-items: center;
-  width: 18px;       
-  height: 18px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
 
-  img {
-    width: 18px;    
+  button {
+    width: 18px;       
     height: 18px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+      width: 18px;    
+      height: 18px;
+    }
   }
 }
+
